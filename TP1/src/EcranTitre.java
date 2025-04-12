@@ -3,7 +3,7 @@ import eko.EKOConsole;
 import eko.EKOTouche;
 import eko.EKOCouleur;
 
-public class EcranTitre extends ObjetJeu {
+public class  EcranTitre extends ObjetJeu {
 
     private long tempsEcouleDepuisCreation = 0;
 
@@ -18,7 +18,9 @@ public class EcranTitre extends ObjetJeu {
         if (tempsEcouleDepuisCreation >= 2000) { // attendre 2 secondes
             if (EKOTouche.ESPACE.estEnfoncee()) {
                 this.detruire();
-                // ici tu commenceras ton jeu
+                // 🔥 Charger la salle ici
+                ChargeurSalle.chargerSalle("salle1.txt");
+                new Personnage(2, 2); // (ex: personnage position x=2, y=2)
             }
         }
     }
@@ -26,27 +28,24 @@ public class EcranTitre extends ObjetJeu {
     @Override
     protected void dessiner() {
         String[] grenouille = {
-                "  @..@",
-                "  (----)",
-                " ( >__< )",
-                " ^^ ~~ ^^",
+                "    @..@",
+                "   (----)",
+                "  ( >__< )",
+                "  ^^    ^^",
+                "   ~~  ~~"
         };
 
-        int hauteurGrenouille = grenouille.length;
-        int centreY = (EKOConsole.hauteur() / 2) - (hauteurGrenouille / 2) - 1;
-        // "-1" pour que FROGGYRINTHE soit juste bien en dessous
+        int centreY = (EKOConsole.hauteur() / 2) - (grenouille.length / 2) - 1;
 
-        // Afficher chaque ligne de la grenouille
         for (int i = 0; i < grenouille.length; i++) {
             String ligne = grenouille[i];
             int centreX = (EKOConsole.largeur() - ligne.length()) / 2;
             EKOConsole.afficher(centreX, centreY + i, ligne);
         }
 
-        // Afficher "FROGGYRINTHE" en dessous
         String titre = "FROGGYRINTHE";
         int centreTitreX = (EKOConsole.largeur() - titre.length()) / 2;
-        int titreY = centreY + grenouille.length + 1; // juste après la grenouille
+        int titreY = centreY + grenouille.length + 1;
 
         EKOConsole.afficher(centreTitreX, titreY, new EKOChaine(titre, EKOCouleur.VERT));
     }

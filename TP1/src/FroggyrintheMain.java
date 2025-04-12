@@ -1,12 +1,10 @@
 import eko.EKO;
 
-
 public class FroggyrintheMain {
-
     public static void main(String[] args) {
-        EKO.initialiser("Froggyrinthe", 75, 28); // Ouvre la fenêtre EKO
-        new EcranDeveloppeurs(); // Crée l'écran de développeurs
-        boucleDeJeu(); // Lance la boucle de jeu
+        EKO.initialiser("Froggyrinthe", 60, 25);
+        new EcranDeveloppeurs(); // d'abord l'écran développeurs
+        boucleDeJeu();
     }
 
     private static void boucleDeJeu() {

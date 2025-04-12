@@ -9,24 +9,44 @@ public class Personnage extends ObjetJeu implements Collisionnable {
 
     @Override
     protected void mettreAJour(long deltaTemps) {
+        int nouveauX = getX();
+        int nouveauY = getY();
+
         if (EKOTouche.FLECHE_GAUCHE.estEnfoncee()) {
-            position.x--;
+            nouveauX--;
         } else if (EKOTouche.FLECHE_DROITE.estEnfoncee()) {
-            position.x++;
+            nouveauX++;
         } else if (EKOTouche.FLECHE_HAUT.estEnfoncee()) {
-            position.y--;
+            nouveauY--;
         } else if (EKOTouche.FLECHE_BAS.estEnfoncee()) {
-            position.y++;
+            nouveauY++;
+        }
+
+        // Avant de bouger : vérifier si la case est libre (pas un mur)
+        if (peutAller(nouveauX, nouveauY)) {
+            position.x = nouveauX;
+            position.y = nouveauY;
         }
     }
 
     @Override
     protected void dessiner() {
-        EKOConsole.afficher(getX(), getY(), "P");  // 'P' pour Personnage
+        EKOConsole.afficher(getX(), getY(), "P"); // P pour Personnage
     }
 
     @Override
     public void gererCollisionAvec(ObjetJeu autre) {
-        // Plus tard, on mettra la gestion contre clef, potion, ennemis
+        // Si tu veux plus tard : ramasser clefs, ouvrir portes, etc.
+    }
+
+    private boolean peutAller(int x, int y) {
+        // Vérifie si la case (x, y) est libre (pas un mur)
+
+        for (ObjetJeu objet : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.MUR)) {
+            if (objet.getX() == x && objet.getY() == y) {
+                return false; // 🚫 Il y a un mur ici, interdit d'aller
+            }
+        }
+        return true; // ✅ Pas de mur, on peut y aller
     }
 }
