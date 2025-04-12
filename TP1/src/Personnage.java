@@ -49,7 +49,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
         // Vérifie si la case (x, y) est libre (pas un mur)
         for (ObjetJeu objet : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.MUR)) {
             if (objet.getX() == x && objet.getY() == y) {
-                return false; 
+                return false;
             }
         }
         return true;
