@@ -20,7 +20,7 @@ public class  EcranTitre extends ObjetJeu {
                 this.detruire();
                 // 🔥 Charger la salle ici
                 ChargeurSalle.chargerSalle("salle1.txt");
-                new Personnage(2, 2); // (ex: personnage position x=2, y=2)
+                new Personnage(3, 5); // (ex: personnage position x=2, y=2)
             }
         }
     }
