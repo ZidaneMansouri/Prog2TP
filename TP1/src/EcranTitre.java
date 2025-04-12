@@ -28,11 +28,10 @@ public class  EcranTitre extends ObjetJeu {
     @Override
     protected void dessiner() {
         String[] grenouille = {
-                "    @..@",
-                "   (----)",
+                "   @..@",
+                "  (----)",
                 "  ( >__< )",
-                "  ^^    ^^",
-                "   ~~  ~~"
+                "  ^^~~  ~~^^",
         };
 
         int centreY = (EKOConsole.hauteur() / 2) - (grenouille.length / 2) - 1;
@@ -43,7 +42,7 @@ public class  EcranTitre extends ObjetJeu {
             EKOConsole.afficher(centreX, centreY + i, ligne);
         }
 
-        String titre = "FROGGYRINTHE";
+        String titre = " FROGGYRINTHE";
         int centreTitreX = (EKOConsole.largeur() - titre.length()) / 2;
         int titreY = centreY + grenouille.length + 1;
 
