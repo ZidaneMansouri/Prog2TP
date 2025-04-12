@@ -49,10 +49,10 @@ public class Personnage extends ObjetJeu implements Collisionnable {
         // Vérifie si la case (x, y) est libre (pas un mur)
         for (ObjetJeu objet : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.MUR)) {
             if (objet.getX() == x && objet.getY() == y) {
-                return false; // 🚫 Il y a un mur ici, interdit d'aller
+                return false; 
             }
         }
-        return true; // ✅ Pas de mur, on peut y aller
+        return true;
     }
 
     private void afficherJaugeVie() {
