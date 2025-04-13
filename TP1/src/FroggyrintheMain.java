@@ -1,8 +1,14 @@
 import eko.EKO;
+import eko.EKOAudio;
+import eko.EKOSon;
 
 public class FroggyrintheMain {
     public static void main(String[] args) {
         EKO.initialiser("Froggyrinthe", 60, 25);
+
+        EKOSon Bmusique = EKOAudio.charger("audio/TheMusicV2.wav");
+        EKOAudio.jouer(Bmusique, true);
+
         new EcranDeveloppeurs(); // d'abord l'écran développeurs
         boucleDeJeu();
     }
