@@ -1,5 +1,7 @@
 import eko.EKOConsole;
+import eko.EKOCouleur;
 import eko.EKOTouche;
+import eko.EKOChaine;
 
 public class Personnage extends ObjetJeu implements Collisionnable {
 
@@ -35,7 +37,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
     @Override
     protected void dessiner() {
         afficherJaugeVie(); // 🔥 Toujours afficher la jauge de vie d'abord
-        EKOConsole.afficher(getX(), getY(), "P"); // Ensuite afficher ton personnage
+        EKOConsole.afficher(getX(), getY(), "\uF4FF", EKOCouleur.CYAN); // Ensuite afficher ton personnage
     }
 
 
@@ -60,18 +62,21 @@ public class Personnage extends ObjetJeu implements Collisionnable {
         int pointsDeVieParCoeur = vieMax / nbCoeursTotal; // 100 / 5 = 20 points par cœur
         int coeursPleins = vie / pointsDeVieParCoeur; // Combien de cœurs pleins
 
-        StringBuilder jauge = new StringBuilder();
-        for (int i = 0; i < nbCoeursTotal; i++) {
-            if (i < coeursPleins) {
-                jauge.append("❤️ ");
-            } else {
-                jauge.append("🤍 ");
-            }
-        }
-
         // Centre la jauge de cœurs en haut de l'écran
         int centreX = (EKOConsole.largeur() - (nbCoeursTotal * 2)) / 2; // Ajuste pour cœurs
-        EKOConsole.afficher(centreX, 0, jauge.toString());
+        int x = centreX;
+        int y = 0;
+
+        for (int i = 0; i < nbCoeursTotal; i++) {
+            if (i < coeursPleins) {
+                EKOConsole.afficher(x, y, new EKOChaine("\uEC04", EKOCouleur.ROUGE));
+            } else {
+                EKOConsole.afficher(x, y, new EKOChaine("\uF08A", EKOCouleur.GRIS_FONCE));
+            }
+            x += 2;
+        }
+
+
     }
 
 

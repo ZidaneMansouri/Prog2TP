@@ -1,4 +1,5 @@
 import eko.EKOConsole;
+import eko.EKOCouleur;
 
 public class Mur extends ObjetJeu {
 
@@ -13,6 +14,6 @@ public class Mur extends ObjetJeu {
 
     @Override
     protected void dessiner() {
-        EKOConsole.afficher(getX(), getY(), "#");
+        EKOConsole.afficher(getX(), getY(), "\u2588", EKOCouleur.GRIS_PALE);
     }
 }

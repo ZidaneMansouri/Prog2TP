@@ -1,4 +1,5 @@
 import eko.EKOConsole;
+import eko.EKOCouleur;
 
 public class PorteCondamnee extends ObjetJeu {
 
@@ -13,6 +14,6 @@ public class PorteCondamnee extends ObjetJeu {
 
     @Override
     protected void dessiner() {
-        EKOConsole.afficher(getX(), getY(), "+");
+        EKOConsole.afficher(getX(), getY(), "\u2503", EKOCouleur.ROUGE);
     }
 }

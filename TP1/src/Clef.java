@@ -1,5 +1,6 @@
 import eko.EKOAudio;
 import eko.EKOConsole;
+import eko.EKOCouleur;
 import eko.EKOSon;
 
 public class Clef extends ObjetJeu implements Collisionnable {
@@ -15,7 +16,7 @@ public class Clef extends ObjetJeu implements Collisionnable {
 
     @Override
     protected void dessiner() {
-        EKOConsole.afficher(getX(), getY(), "C");
+        EKOConsole.afficher(getX(), getY(), "\uF084", EKOCouleur.JAUNE);
     }
 
     @Override
