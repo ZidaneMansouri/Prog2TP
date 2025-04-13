@@ -1,4 +1,6 @@
+import eko.EKOAudio;
 import eko.EKOConsole;
+import eko.EKOSon;
 
 public class Clef extends ObjetJeu implements Collisionnable {
 
@@ -20,6 +22,9 @@ public class Clef extends ObjetJeu implements Collisionnable {
     public void gererCollisionAvec(ObjetJeu autre) {
         if (autre instanceof Personnage) {
             this.detruire();
+
+            EKOSon ClefTrouve = EKOAudio.charger("audio/ItemFound.wav");
+            EKOAudio.jouer(ClefTrouve, false);
             // Ici tu pourras ajouter : ouvrir une porte, jouer un son...
         }
     }
