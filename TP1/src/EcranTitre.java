@@ -27,24 +27,34 @@ public class  EcranTitre extends ObjetJeu {
 
     @Override
     protected void dessiner() {
-        String[] grenouille = {
-                "   @..@",
-                "  (----)",
-                "  ( >__< )",
-                "  ^^~~  ~~^^",
+        String[] epee = {
+                " /\\",
+                " /  \\",
+                "   |  |  ",
+                "   |  |  ",
+                "   |  |  ",
+                "   |  |  ",
+                "   |  |  ",
+                "   |  |  ",
+                " |  |",
+                "  __|__|__ ",
+                " |________|",
+                "   ||  ",
+                "  || ",
+                "   "
         };
 
-        int centreY = (EKOConsole.hauteur() / 2) - (grenouille.length / 2) - 1;
+        int centreY = (EKOConsole.hauteur() / 2) - (epee.length / 2) - 1;
 
-        for (int i = 0; i < grenouille.length; i++) {
-            String ligne = grenouille[i];
+        for (int i = 0; i < epee.length; i++) {
+            String ligne = epee[i];
             int centreX = (EKOConsole.largeur() - ligne.length()) / 2;
             EKOConsole.afficher(centreX, centreY + i, ligne);
         }
 
-        String titre = " FROGGYRINTHE";
+        String titre = " LA LÉGENDE DU GARS (il a une épée)";
         int centreTitreX = (EKOConsole.largeur() - titre.length()) / 2;
-        int titreY = centreY + grenouille.length + 1;
+        int titreY = centreY + epee.length + 1;
 
         EKOConsole.afficher(centreTitreX, titreY, new EKOChaine(titre, EKOCouleur.VERT));
     }
