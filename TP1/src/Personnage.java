@@ -36,8 +36,13 @@ public class Personnage extends ObjetJeu implements Collisionnable {
 
     @Override
     protected void dessiner() {
+        int numSalle = 1;
         afficherJaugeVie(); // 🔥 Toujours afficher la jauge de vie d'abord
         EKOConsole.afficher(getX(), getY(), "\uF4FF", EKOCouleur.CYAN); // Ensuite afficher ton personnage
+        String SalleTxt = "Salle: " + numSalle ;
+        int SalleX = EKOConsole.largeur() - SalleTxt.length();
+        EKOConsole.afficher(SalleX, 0, SalleTxt, EKOCouleur.JAUNE);
+
     }
 
 
@@ -63,8 +68,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
         int coeursPleins = vie / pointsDeVieParCoeur; // Combien de cœurs pleins
 
         // Centre la jauge de cœurs en haut de l'écran
-        int centreX = (EKOConsole.largeur() - (nbCoeursTotal * 2)) / 2; // Ajuste pour cœurs
-        int x = centreX;
+        int x= 0;
         int y = 0;
 
         for (int i = 0; i < nbCoeursTotal; i++) {
