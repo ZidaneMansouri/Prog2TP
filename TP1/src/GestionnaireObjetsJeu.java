@@ -127,4 +127,8 @@ public class GestionnaireObjetsJeu {
 
         return null;
     }
+
+    public void viderSalle() {
+        objetsJeu.clear();
+    }
 }

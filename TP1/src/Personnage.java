@@ -7,6 +7,8 @@ public class Personnage extends ObjetJeu implements Collisionnable {
 
     private int vieMax = 100; // Vie maximale
     private int vie = 100;    // Vie actuelle
+    private boolean aCle = false;
+    private static int numSalle = 1;
 
     public Personnage(int x, int y) {
         super("Personnage", x, y, Etiquette.SOL);
@@ -36,8 +38,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
 
     @Override
     protected void dessiner() {
-        int numSalle = 1;
-        afficherJaugeVie(); // 🔥 Toujours afficher la jauge de vie d'abord
+        afficherJaugeVie();
         EKOConsole.afficher(getX(), getY(), "\uF4FF", EKOCouleur.CYAN); // Ensuite afficher ton personnage
         String SalleTxt = "Salle: " + numSalle ;
         int SalleX = EKOConsole.largeur() - SalleTxt.length();
@@ -48,8 +49,18 @@ public class Personnage extends ObjetJeu implements Collisionnable {
 
     @Override
     public void gererCollisionAvec(ObjetJeu autre) {
-        // Exemple : tu pourrais perdre de la vie si collision avec un ennemi plus tard
-        // Ex: if (autre instanceof Ennemi) { perdreVie(10); }
+        if (autre instanceof Clef) {
+            aCle = true;
+        }
+
+        if (autre instanceof PorteVerrouillee) {
+            if (aCle && autre.getX() == getX() && autre.getY() == getY()) {
+                GestionnaireObjetsJeu.obtenir().viderSalle();
+                ChargeurSalle.chargerSalle("salle2.txt");
+                new Personnage(3, 5); //
+                Personnage.numSalle++;
+            }
+        }
     }
 
     private boolean peutAller(int x, int y) {
