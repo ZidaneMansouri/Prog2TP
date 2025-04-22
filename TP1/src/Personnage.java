@@ -55,10 +55,20 @@ public class Personnage extends ObjetJeu implements Collisionnable {
 
         if (autre instanceof PorteVerrouillee) {
             if (aCle && autre.getX() == getX() && autre.getY() == getY()) {
+                // ✅ Terminer le jeu dès qu'on sort de la salle 1
                 GestionnaireObjetsJeu.obtenir().viderSalle();
-                ChargeurSalle.chargerSalle("salle2.txt");
-                new Personnage(3, 5); //
-                Personnage.numSalle++;
+
+                String message1 = "Bravo ! Vous avez terminé la salle !";
+                String message2 = "Appuyez sur ÉCHAPPE pour quitter";
+
+                int x1 = (EKOConsole.largeur() - message1.length()) / 2;
+                int x2 = (EKOConsole.largeur() - message2.length()) / 2;
+                int y = EKOConsole.hauteur() / 2;
+
+                EKOConsole.afficher(x1, y, message1, EKOCouleur.VERT);
+                EKOConsole.afficher(x2, y + 2, message2, EKOCouleur.GRIS_PALE);
+
+                this.desactiver(); // On bloque le personnage
             }
         }
     }
@@ -74,11 +84,9 @@ public class Personnage extends ObjetJeu implements Collisionnable {
     }
 
     private void afficherJaugeVie() {
-        int nbCoeursTotal = 5; // 5 cœurs en tout
-        int pointsDeVieParCoeur = vieMax / nbCoeursTotal; // 100 / 5 = 20 points par cœur
-        int coeursPleins = vie / pointsDeVieParCoeur; // Combien de cœurs pleins
-
-        // Centre la jauge de cœurs en haut de l'écran
+        int nbCoeursTotal = 5;
+        int pointsDeVieParCoeur = vieMax / nbCoeursTotal;
+        int coeursPleins = vie / pointsDeVieParCoeur;
         int x= 0;
         int y = 0;
 
