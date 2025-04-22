@@ -29,7 +29,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
             nouveauY++;
         }
 
-        // Avant de bouger : vérifier si la case est libre (pas un mur)
+
         if (peutAller(nouveauX, nouveauY)) {
             position.x = nouveauX;
             position.y = nouveauY;
@@ -55,7 +55,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
 
         if (autre instanceof PorteVerrouillee) {
             if (aCle && autre.getX() == getX() && autre.getY() == getY()) {
-                // ✅ Terminer le jeu dès qu'on sort de la salle 1
+
                 GestionnaireObjetsJeu.obtenir().viderSalle();
 
                 String message1 = "Bravo ! Vous avez terminé la salle !";
@@ -74,7 +74,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
     }
 
     private boolean peutAller(int x, int y) {
-        // Vérifie si la case (x, y) est libre (pas un mur)
+
         for (ObjetJeu objet : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.MUR)) {
             if (objet.getX() == x && objet.getY() == y) {
                 return false;

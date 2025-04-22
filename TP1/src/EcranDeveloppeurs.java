@@ -10,8 +10,8 @@ public class EcranDeveloppeurs extends ObjetJeu {
     @Override
     protected void mettreAJour(long deltaTemps) {
         if (EKOTouche.ESPACE.estEnfoncee()) {
-            this.detruire(); // Supprimer l'écran développeurs
-            new EcranTitre(); // Créer l'écran titre
+            this.detruire();
+            new EcranTitre();
         }
     }
 

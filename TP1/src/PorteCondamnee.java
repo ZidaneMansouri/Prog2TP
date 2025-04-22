@@ -9,7 +9,7 @@ public class PorteCondamnee extends ObjetJeu {
 
     @Override
     protected void mettreAJour(long deltaTemps) {
-        // Ne bouge pas
+
     }
 
     @Override

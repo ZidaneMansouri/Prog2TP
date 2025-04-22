@@ -15,12 +15,12 @@ public class  EcranTitre extends ObjetJeu {
     protected void mettreAJour(long deltaTemps) {
         tempsEcouleDepuisCreation += deltaTemps;
 
-        if (tempsEcouleDepuisCreation >= 2000) { // attendre 2 secondes
+        if (tempsEcouleDepuisCreation >= 2000) {
             if (EKOTouche.ESPACE.estEnfoncee()) {
                 this.detruire();
-                // 🔥 Charger la salle ici
+
                 ChargeurSalle.chargerSalle("salle1.txt");
-                new Personnage(3, 5); // (ex: personnage position x=2, y=2)
+                new Personnage(3, 5);
             }
         }
     }
