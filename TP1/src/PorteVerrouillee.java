@@ -14,6 +14,6 @@ public class PorteVerrouillee extends ObjetJeu {
 
     @Override
     protected void dessiner() {
-        EKOConsole.afficher(getX(), getY(), "\u2503", EKOCouleur.VERT);
+        EKOConsole.afficher(getX(), getY(), "\u2503", EKOCouleur.ROUGE);
     }
 }
