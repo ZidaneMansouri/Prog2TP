@@ -44,14 +44,14 @@ public class GestionnaireObjetsJeu {
     public void mettreAJour(long deltaTemps) {
         for (int i = objetsJeu.size() - 1; i >= 0; i--) {
             if (objetsJeu.get(i).doitEtreDetruit()) {
-                objetsJeu.remove(i);  // cet objet de jeu ne sera plus mis à jour, ni dessiné
+                objetsJeu.remove(i);
             }
             else if (objetsJeu.get(i).estActif()) {
                 objetsJeu.get(i).mettreAJour(deltaTemps);
             }
         }
 
-        // détection des collisions
+
         if (objetsJeu.size() >= 2) {
             for (int i = 0; i < objetsJeu.size(); i++) {
                 ObjetJeu un = objetsJeu.get(i);
@@ -91,7 +91,7 @@ public class GestionnaireObjetsJeu {
      * Les objets avec une position z plus élevée sont dessinés en dernier, donc sur le dessus.
      */
     protected void ordonnerCouches() {
-        objetsJeu.sort(Comparator.comparingInt(ObjetJeu::getZ));  // tri les objets en ordre de profondeur
+        objetsJeu.sort(Comparator.comparingInt(ObjetJeu::getZ));
     }
 
     /**

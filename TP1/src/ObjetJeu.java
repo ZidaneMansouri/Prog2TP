@@ -69,7 +69,6 @@ public abstract class ObjetJeu {
     public boolean doitEtreDetruit() { return this.detruire; }
     public boolean estActif() { return this.actif; }
 
-    // accesseurs disponibles pour les tris
     public int getX() { return this.position.x; }
     public int getY() { return this.position.y; }
     public int getZ() { return this.position.z; }

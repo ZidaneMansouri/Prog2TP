@@ -39,7 +39,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
     @Override
     protected void dessiner() {
         afficherJaugeVie();
-        EKOConsole.afficher(getX(), getY(), "\uF4FF", EKOCouleur.CYAN); // Ensuite afficher ton personnage
+        EKOConsole.afficher(getX(), getY(), "\uF4FF", EKOCouleur.CYAN);
         String SalleTxt = "Salle:" + numSalle ;
         int SalleX = EKOConsole.largeur() - SalleTxt.length();
         EKOConsole.afficher(SalleX, 0, SalleTxt, EKOCouleur.JAUNE);
@@ -68,7 +68,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
                 EKOConsole.afficher(x1, y, message1, EKOCouleur.VERT);
                 EKOConsole.afficher(x2, y + 2, message2, EKOCouleur.GRIS_PALE);
 
-                this.desactiver(); // On bloque le personnage
+                this.desactiver();
             }
         }
     }
