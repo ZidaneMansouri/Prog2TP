@@ -27,7 +27,7 @@ public class ChargeurSalle {
                             new PorteVerrouillee(x, y);
                             break;
                         default:
-                            // Sol vide
+
                             break;
                     }
                 }

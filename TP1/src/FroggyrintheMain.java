@@ -1,6 +1,7 @@
 import eko.EKO;
 import eko.EKOAudio;
 import eko.EKOSon;
+import eko.EKOTouche;
 
 public class FroggyrintheMain {
     public static void main(String[] args) {
@@ -9,7 +10,7 @@ public class FroggyrintheMain {
         EKOSon Bmusique = EKOAudio.charger("audio/TheMusicV2.wav");
         EKOAudio.jouer(Bmusique, true);
 
-        new EcranDeveloppeurs(); // d'abord l'écran développeurs
+        new EcranDeveloppeurs();
         boucleDeJeu();
     }
 
@@ -29,7 +30,9 @@ public class FroggyrintheMain {
 
             GestionnaireObjetsJeu.obtenir().mettreAJour(deltaTemps / 1_000_000);
             GestionnaireObjetsJeu.obtenir().dessiner();
-
+            if (EKOTouche.ECHAPPEMENT.estEnfoncee()) {
+                System.exit(0);
+            }
             tempsAttente = MS_PAR_TRAME - (System.nanoTime() - dernierTemps) / 1_000_000;
             if (tempsAttente > 0) {
                 EKO.attendre(tempsAttente);

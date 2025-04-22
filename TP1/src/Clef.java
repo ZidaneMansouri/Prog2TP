@@ -26,7 +26,7 @@ public class Clef extends ObjetJeu implements Collisionnable {
 
             EKOSon ClefTrouve = EKOAudio.charger("audio/ItemFound.wav");
             EKOAudio.jouer(ClefTrouve, false);
-            // Ici tu pourras ajouter : ouvrir une porte, jouer un son...
+
         }
     }
 }
