@@ -40,7 +40,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
     protected void dessiner() {
         afficherJaugeVie();
         EKOConsole.afficher(getX(), getY(), "\uF4FF", EKOCouleur.CYAN); // Ensuite afficher ton personnage
-        String SalleTxt = "Salle: " + numSalle ;
+        String SalleTxt = "Salle:" + numSalle ;
         int SalleX = EKOConsole.largeur() - SalleTxt.length();
         EKOConsole.afficher(SalleX, 0, SalleTxt, EKOCouleur.JAUNE);
 
