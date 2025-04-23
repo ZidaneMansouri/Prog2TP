@@ -8,7 +8,7 @@ public class GestionnaireObjetsJeu {
 
     private final ArrayList<ObjetJeu> objetsJeu = new ArrayList<>();
 
-    private GestionnaireObjetsJeu() {}  // pour éviter une instanciation externe
+    private GestionnaireObjetsJeu() {}
 
     /**
      * Retourne l'instance unique (singleton) du gestionnaire des objets de jeu.
