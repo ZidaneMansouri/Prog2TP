@@ -41,7 +41,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
         afficherJaugeVie();
         EKOConsole.afficher(getX(), getY(), "\uF4FF", EKOCouleur.CYAN);
         String SalleTxt = "Salle:" + numSalle ;
-        int SalleX = EKOConsole.largeur() - SalleTxt.length();
+        int SalleX = EKOConsole.largeur() - (SalleTxt.length() + 2);
         EKOConsole.afficher(SalleX, 0, SalleTxt, EKOCouleur.JAUNE);
 
     }
@@ -61,10 +61,10 @@ public class Personnage extends ObjetJeu implements Collisionnable {
         }
 
         if (autre instanceof PorteVerrouillee) {
-            if (aCle && autre.getX() == getX() && autre.getY() == getY()) {
+            if (aCle && autre.getX() == getX() && autre.getY() == getY() && numSalle==4) {
 
                 GestionnaireObjetsJeu.obtenir().viderSalle();
-
+                
                 String message1 = "Bravo ! Vous avez terminé la salle !";
                 String message2 = "Appuyez sur ÉCHAPPE pour quitter";
 
@@ -76,8 +76,16 @@ public class Personnage extends ObjetJeu implements Collisionnable {
                 EKOConsole.afficher(x2, y + 2, message2, EKOCouleur.GRIS_PALE);
 
                 this.desactiver();
+            } else if (aCle && autre.getX() == getX() && autre.getY() == getY()) {
+                GestionnaireObjetsJeu.obtenir().viderSalle();
+                ChargeurSalle.chargerSalle("salle2.txt");
+                new Personnage(3, 5); //
+                Personnage.numSalle++;
+                
             }
+
         }
+        
     }
 
     private boolean peutAller(int x, int y) {
@@ -94,7 +102,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
         int nbCoeursTotal = 5;
         int pointsDeVieParCoeur = vieMax / nbCoeursTotal;
         int coeursPleins = vie / pointsDeVieParCoeur;
-        int x= 0;
+        int x= 2;
         int y = 0;
 
         for (int i = 0; i < nbCoeursTotal; i++) {
