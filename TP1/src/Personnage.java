@@ -51,6 +51,13 @@ public class Personnage extends ObjetJeu implements Collisionnable {
     public void gererCollisionAvec(ObjetJeu autre) {
         if (autre instanceof Clef) {
             aCle = true;
+
+            // Cherche la porte verrouillée et la déverrouille
+            for (ObjetJeu obj : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.SORTIE)) {
+                if (obj instanceof PorteVerrouillee) {
+                    ((PorteVerrouillee) obj).deverrouiller();
+                }
+            }
         }
 
         if (autre instanceof PorteVerrouillee) {
