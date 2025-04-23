@@ -11,13 +11,12 @@ public class PorteVerrouillee extends ObjetJeu {
 
     @Override
     protected void mettreAJour(long deltaTemps) {
-        // Ne bouge pas
     }
 
     @Override
     protected void dessiner() {
         EKOCouleur couleur = estDeverrouillee ? EKOCouleur.VERT : EKOCouleur.ROUGE;
-        EKOConsole.afficher(getX(), getY(), "\u2503", couleur); // Symbole de porte verticale
+        EKOConsole.afficher(getX(), getY(), "\u2503", couleur);
     }
 
     public void deverrouiller() {
