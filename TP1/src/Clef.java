@@ -11,7 +11,6 @@ public class Clef extends ObjetJeu implements Collisionnable {
 
     @Override
     protected void mettreAJour(long deltaTemps) {
-        // Ne bouge pas
     }
 
     @Override
