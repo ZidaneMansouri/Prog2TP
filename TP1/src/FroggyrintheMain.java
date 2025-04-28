@@ -1,7 +1,7 @@
 /**
  * TP1 FROGGYRINTHE
  * Antranik Bakkalian et Zidane Rakane Mansouri
- * MI-PROJET
+ * PROJET
  * Remise au plus tard le 23 avril
  * Évaluation semaine 12
  */
