@@ -41,6 +41,7 @@ public class GestionnaireObjetsJeu {
      *
      * @param deltaTemps Temps écoulé (en millisecondes) depuis la dernière trame
      */
+    //Met à jour tous les objets (personnage, collisions, etc.).
     public void mettreAJour(long deltaTemps) {
         for (int i = objetsJeu.size() - 1; i >= 0; i--) {
             if (objetsJeu.get(i).doitEtreDetruit()) {
@@ -74,6 +75,7 @@ public class GestionnaireObjetsJeu {
     /**
      * Dessine tous les objets de jeu.
      */
+    //Affiche tous les objets actifs à l'écran.
     public void dessiner() {
         EKOConsole.effacer();
 
@@ -100,6 +102,7 @@ public class GestionnaireObjetsJeu {
      * @param etiquette Étiquette
      * @return Liste des objets de jeu trouvés
      */
+    //Retourne une liste d’objets selon leur type (ex : tous les murs).
     public ArrayList<ObjetJeu> trouverObjetsJeu(Etiquette etiquette) {
         ArrayList<ObjetJeu> objetsTrouves = new ArrayList<>();
 
@@ -118,6 +121,7 @@ public class GestionnaireObjetsJeu {
      * @param nom Nom donné à l'objet de jeu
      * @return Objet de jeu si trouvé, null sinon
      */
+    //Cherche un objet par son nom.
     public ObjetJeu trouverObjetJeu(String nom) {
         for (ObjetJeu objetJeu : objetsJeu) {
             if (objetJeu.nom != null && objetJeu.nom.equals(nom)) {
@@ -127,7 +131,7 @@ public class GestionnaireObjetsJeu {
 
         return null;
     }
-
+//Supprime tous les objets de la salle actuelle.
     public void viderSalle() {
         objetsJeu.clear();
     }

@@ -13,7 +13,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
     public Personnage(int x, int y) {
         super("Personnage", x, y, Etiquette.SOL);
     }
-
+//Gère les déplacements avec les flèches (haut, bas, gauche, droite).
     @Override
     protected void mettreAJour(long deltaTemps) {
         int nouveauX = getX();
@@ -35,7 +35,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
             position.y = nouveauY;
         }
     }
-
+//	Affiche le personnage + la jauge de vie + le numéro de salle.
     @Override
     protected void dessiner() {
         afficherJaugeVie();
@@ -46,7 +46,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
 
     }
 
-
+//Gère ce qui se passe quand le personnage touche une clé ou une porte.
     @Override
     public void gererCollisionAvec(ObjetJeu autre) {
         if (autre instanceof Clef) {
@@ -86,7 +86,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
         }
         
     }
-
+//Vérifie si la case visée n’est pas un mur.
     private boolean peutAller(int x, int y) {
 
         for (ObjetJeu objet : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.MUR)) {
@@ -96,7 +96,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
         }
         return true;
     }
-
+//Affiche les 5 cœurs (rouges ou gris) en haut de l'écran.
     private void afficherJaugeVie() {
         int nbCoeursTotal = 5;
         int pointsDeVieParCoeur = vieMax / nbCoeursTotal;
@@ -116,7 +116,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
 
     }
 
-
+//Fait baisser les points de vie du joueur.
 
     public void perdreVie(int points) {
         vie -= points;

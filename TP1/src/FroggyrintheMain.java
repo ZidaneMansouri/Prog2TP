@@ -20,7 +20,7 @@ public class FroggyrintheMain {
         new EcranDeveloppeurs();
         boucleDeJeu();
     }
-
+//Boucle principale : met à jour + dessine tout + vérifie si on appuie sur ÉCHAPPE.
     private static void boucleDeJeu() {
         final int TPS = 30;
         final long MS_PAR_TRAME = 1000 / TPS;
