@@ -10,7 +10,7 @@ import eko.EKOAudio;
 import eko.EKOSon;
 import eko.EKOTouche;
 
-public class FroggyrintheMain {
+public class Main {
     public static void main(String[] args) {
         EKO.initialiser("Froggyrinthe", 60, 25);
 
