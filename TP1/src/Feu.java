@@ -1,23 +1,28 @@
 import eko.EKOConsole;
 import eko.EKOCouleur;
+import java.util.Random;
 
-public class Feu extends ObjetJeu implements Collisionnable {
+public class Feu extends ObjetJeu {
+    private boolean versGauche = true;
+    private long tempsDepuisDernierChangement = 0;
+    private long delaiChangement = 500 + new Random().nextInt(1000); // entre 500ms et 1500ms
+
     public Feu(int x, int y) {
         super("Feu", x, y, Etiquette.ENNEMI);
     }
 
     @Override
-    protected void mettreAJour(long deltaTemps) {}
-
-    @Override
-    protected void dessiner() {
-        EKOConsole.afficher(getX(), getY(), "\uF46A", EKOCouleur.ROUGE);
+    protected void mettreAJour(long deltaTemps) {
+        tempsDepuisDernierChangement += deltaTemps;
+        if (tempsDepuisDernierChangement > delaiChangement) {
+            versGauche = !versGauche;
+            tempsDepuisDernierChangement = 0;
+        }
     }
 
     @Override
-    public void gererCollisionAvec(ObjetJeu autre) {
-        if (autre instanceof Personnage) {
-            ((Personnage) autre).perdreVie(20);
-        }
+    protected void dessiner() {
+        String symbole = versGauche ? "<" : ">";
+        EKOConsole.afficher(getX(), getY(), symbole, EKOCouleur.ROUGE);
     }
 }

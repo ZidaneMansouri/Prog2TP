@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ChargeurSalle {
-//Lit un fichier .txt et crée tous les murs, portes, clés à la bonne position.
+
     public static void chargerSalle(String cheminFichier) {
         try (BufferedReader lecteur = new BufferedReader(new FileReader(cheminFichier))) {
             String ligne;
@@ -26,8 +26,29 @@ public class ChargeurSalle {
                         case '-':
                             new PorteVerrouillee(x, y);
                             break;
+                        case 'F':
+                            new Feu(x, y);
+                            break;
+                        case 'G':
+                            new Fantome(x, y, true); // Fantôme horizontal
+                            break;
+                        case 'V':
+                            new Fantome(x, y, false); // Fantôme vertical
+                            break;
+                        case 'S':
+                            new Squelette(x, y);
+                            break;
+                        case 'I':
+                            new Insecte(x, y);
+                            break;
+                        case 'R':
+                            new Grenouille(x, y, true); // langue à droite
+                            break;
+                        case 'L':
+                            new Grenouille(x, y, false); // langue à gauche
+                            break;
                         default:
-
+                            // sol vide ou caractère ignoré
                             break;
                     }
                 }

@@ -1,33 +1,43 @@
 import eko.EKOConsole;
 import eko.EKOCouleur;
 
-public class Fantome extends ObjetJeu implements Collisionnable {
-    private boolean vaDroite = true;
+public class Fantome extends ObjetJeu {
+    private boolean horizontal;
+    private int direction = 1;
 
-    public Fantome(int x, int y) {
+    public Fantome(int x, int y, boolean horizontal) {
         super("Fantome", x, y, Etiquette.ENNEMI);
+        this.horizontal = horizontal;
     }
 
     @Override
     protected void mettreAJour(long deltaTemps) {
-        if (vaDroite) {
-            position.x++;
-            if (position.x > 55) vaDroite = false;
+        if (horizontal) {
+            position.x += direction;
+            if (!peutAller(position.x, position.y)) {
+                position.x -= direction;
+                direction *= -1;
+            }
         } else {
-            position.x--;
-            if (position.x < 5) vaDroite = true;
+            position.y += direction;
+            if (!peutAller(position.x, position.y)) {
+                position.y -= direction;
+                direction *= -1;
+            }
         }
+    }
+
+    private boolean peutAller(int x, int y) {
+        for (ObjetJeu objet : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.MUR)) {
+            if (objet.getX() == x && objet.getY() == y) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     protected void dessiner() {
-        EKOConsole.afficher(getX(), getY(), "\uF47B", EKOCouleur.BLANC);
-    }
-
-    @Override
-    public void gererCollisionAvec(ObjetJeu autre) {
-        if (autre instanceof Personnage) {
-            ((Personnage) autre).perdreVie(10);
-        }
+        EKOConsole.afficher(getX(), getY(), "F", EKOCouleur.ROUGE);
     }
 }
