@@ -16,7 +16,7 @@ public class Insecte extends ObjetJeu implements Collisionnable {
         int prochainY = getY() + directionY;
 
         if (estMurOuPorte(prochainX, prochainY)) {
-            tournerADroite(); // tourne à droite quand il frappe un mur ou une porte verrouillée
+            tournerADroite(); // change de direction si obstacle
         } else {
             position.x = prochainX;
             position.y = prochainY;
@@ -24,9 +24,9 @@ public class Insecte extends ObjetJeu implements Collisionnable {
     }
 
     private void tournerADroite() {
-        int tmp = directionX;
+        int temp = directionX;
         directionX = -directionY;
-        directionY = tmp;
+        directionY = temp;
     }
 
     private boolean estMurOuPorte(int x, int y) {
@@ -41,7 +41,7 @@ public class Insecte extends ObjetJeu implements Collisionnable {
 
     @Override
     protected void dessiner() {
-        EKOConsole.afficher(getX(), getY(), "\u2601", EKOCouleur.VERT); // icône personnalisée pour l'insecte
+        EKOConsole.afficher(getX(), getY(), "\uF188", EKOCouleur.VERT);  // 🐞 symbole insecte
     }
 
     @Override

@@ -1,11 +1,9 @@
-import eko.EKOConsole;
-import eko.EKOCouleur;
-import java.util.Random;
+import eko.*;
 
 public class Feu extends ObjetJeu {
-    private boolean versGauche = true;
-    private long tempsDepuisDernierChangement = 0;
-    private long delaiChangement = 500 + new Random().nextInt(1000); // entre 500ms et 1500ms
+    private boolean versDroite = true;
+    private long timer = 0;
+    private long prochainChangement = 1000 + (long)(Math.random() * 2000);
 
     public Feu(int x, int y) {
         super("Feu", x, y, Etiquette.ENNEMI);
@@ -13,16 +11,17 @@ public class Feu extends ObjetJeu {
 
     @Override
     protected void mettreAJour(long deltaTemps) {
-        tempsDepuisDernierChangement += deltaTemps;
-        if (tempsDepuisDernierChangement > delaiChangement) {
-            versGauche = !versGauche;
-            tempsDepuisDernierChangement = 0;
+        timer += deltaTemps;
+        if (timer >= prochainChangement) {
+            versDroite = !versDroite;
+            timer = 0;
+            prochainChangement = 1000 + (long)(Math.random() * 2000);
         }
     }
 
     @Override
     protected void dessiner() {
-        String symbole = versGauche ? "<" : ">";
+        String symbole = versDroite ? "\uE3BF" : "\uE3BF";
         EKOConsole.afficher(getX(), getY(), symbole, EKOCouleur.ROUGE);
     }
 }

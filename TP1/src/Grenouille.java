@@ -1,37 +1,33 @@
-import eko.EKOConsole;
-import eko.EKOCouleur;
+import eko.*;
 
 public class Grenouille extends ObjetJeu {
     private boolean versDroite;
-    private boolean langueSortie = false;
+    private int langueLongueur = 0;
+    private boolean tirer = false;
     private long timer = 0;
 
-    public Grenouille(int x, int y, boolean versDroite) {
+    public Grenouille(int x, int y, boolean droite) {
         super("Grenouille", x, y, Etiquette.ENNEMI);
-        this.versDroite = versDroite;
+        this.versDroite = droite;
     }
 
     @Override
     protected void mettreAJour(long deltaTemps) {
         timer += deltaTemps;
-        if (timer > 1500) {
-            langueSortie = !langueSortie;
+        if (timer >= 1000) {
+            tirer = !tirer;
             timer = 0;
+            langueLongueur = tirer ? 3 : 0;
         }
     }
 
     @Override
     protected void dessiner() {
-        String grenouille = versDroite ? ")" : "(";
-        EKOConsole.afficher(getX(), getY(), grenouille, EKOCouleur.VERT);
-
-        if (langueSortie) {
-            int xLangue = versDroite ? getX() + 1 : getX() - 1;
-            EKOConsole.afficher(xLangue, getY(), "-", EKOCouleur.ROUGE);
-
-            ObjetJeu joueur = GestionnaireObjetsJeu.obtenir().trouverObjetJeu("Personnage");
-            if (joueur != null && joueur.getX() == xLangue && joueur.getY() == getY()) {
-                ((Personnage) joueur).perdreVie(20);
+        EKOConsole.afficher(getX(), getY(), "\uEDF8", EKOCouleur.VERT);
+        if (tirer) {
+            for (int i = 1; i <= langueLongueur; i++) {
+                int xLangue = versDroite ? getX() + i : getX() - i;
+                EKOConsole.afficher(xLangue, getY(), "\u2500", EKOCouleur.ROUGE);
             }
         }
     }

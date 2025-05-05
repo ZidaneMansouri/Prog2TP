@@ -47,46 +47,53 @@ public class Personnage extends ObjetJeu implements Collisionnable {
     }
 
 //Gère ce qui se passe quand le personnage touche une clé ou une porte.
-    @Override
-    public void gererCollisionAvec(ObjetJeu autre) {
-        if (autre instanceof Clef) {
-            aCle = true;
+@Override
+public void gererCollisionAvec(ObjetJeu autre) {
+    if (autre instanceof Clef) {
+        aCle = true;
 
-            for (ObjetJeu obj : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.SORTIE)) {
-                if (obj instanceof PorteVerrouillee) {
-                    ((PorteVerrouillee) obj).deverrouiller();
-                }
+        for (ObjetJeu obj : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.SORTIE)) {
+            if (obj instanceof PorteVerrouillee) {
+                ((PorteVerrouillee) obj).deverrouiller();
             }
         }
-
-        if (autre instanceof PorteVerrouillee) {
-            if (aCle && autre.getX() == getX() && autre.getY() == getY() && numSalle==4) {
-
-                GestionnaireObjetsJeu.obtenir().viderSalle();
-                
-                String message1 = "Bravo ! Vous avez terminé la salle !";
-                String message2 = "Appuyez sur ÉCHAPPE pour quitter";
-
-                int x1 = (EKOConsole.largeur() - message1.length()) / 2;
-                int x2 = (EKOConsole.largeur() - message2.length()) / 2;
-                int y = EKOConsole.hauteur() / 2;
-
-                EKOConsole.afficher(x1, y, message1, EKOCouleur.VERT);
-                EKOConsole.afficher(x2, y + 2, message2, EKOCouleur.GRIS_PALE);
-
-                this.desactiver();
-            } else if (aCle && autre.getX() == getX() && autre.getY() == getY()) {
-                GestionnaireObjetsJeu.obtenir().viderSalle();
-                ChargeurSalle.chargerSalle("salle2.txt");
-                new Personnage(3, 5); //
-                Personnage.numSalle++;
-                
-            }
-
-        }
-        
     }
-//Vérifie si la case visée n’est pas un mur.
+
+    if (autre instanceof PorteVerrouillee) {
+        if (aCle && autre.getX() == getX() && autre.getY() == getY()) {
+            GestionnaireObjetsJeu.obtenir().viderSalle();
+
+            numSalle++;
+
+            switch (numSalle) {
+                case 2:
+                    ChargeurSalle.chargerSalle("salle2.txt");
+                    new Personnage(3, 5);
+                    break;
+                case 3:
+                    ChargeurSalle.chargerSalle("salle3.txt");
+                    new Personnage(3, 5);
+                    break;
+                case 4:
+                    ChargeurSalle.chargerSalle("salle4.txt");
+                    new Personnage(3, 5);
+                    break;
+                default:
+                    String message1 = "Bravo ! Vous avez terminé toutes les salles !";
+                    String message2 = "Appuyez sur ÉCHAPPE pour quitter.";
+                    int x1 = (EKOConsole.largeur() - message1.length()) / 2;
+                    int x2 = (EKOConsole.largeur() - message2.length()) / 2;
+                    int y = EKOConsole.hauteur() / 2;
+
+                    EKOConsole.afficher(x1, y, message1, EKOCouleur.VERT);
+                    EKOConsole.afficher(x2, y + 2, message2, EKOCouleur.GRIS_PALE);
+                    this.desactiver();
+                    break;
+            }
+        }
+    }
+}
+    //Vérifie si la case visée n’est pas un mur.
     private boolean peutAller(int x, int y) {
 
         for (ObjetJeu objet : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.MUR)) {

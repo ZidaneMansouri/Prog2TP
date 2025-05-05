@@ -1,43 +1,31 @@
-import eko.EKOConsole;
-import eko.EKOCouleur;
+import eko.*;
 
 public class Fantome extends ObjetJeu {
-    private boolean horizontal;
-    private int direction = 1;
+    private int dx;
+    private int dy;
 
     public Fantome(int x, int y, boolean horizontal) {
         super("Fantome", x, y, Etiquette.ENNEMI);
-        this.horizontal = horizontal;
+        if (horizontal) {
+            dx = 1;
+            dy = 0;
+        } else {
+            dx = 0;
+            dy = 1;
+        }
     }
 
     @Override
     protected void mettreAJour(long deltaTemps) {
-        if (horizontal) {
-            position.x += direction;
-            if (!peutAller(position.x, position.y)) {
-                position.x -= direction;
-                direction *= -1;
-            }
-        } else {
-            position.y += direction;
-            if (!peutAller(position.x, position.y)) {
-                position.y -= direction;
-                direction *= -1;
-            }
-        }
-    }
+        position.x += dx;
+        position.y += dy;
 
-    private boolean peutAller(int x, int y) {
-        for (ObjetJeu objet : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.MUR)) {
-            if (objet.getX() == x && objet.getY() == y) {
-                return false;
-            }
-        }
-        return true;
+        if (position.x <= 0 || position.x >= EKOConsole.largeur() - 1) dx *= -1;
+        if (position.y <= 0 || position.y >= EKOConsole.hauteur() - 1) dy *= -1;
     }
 
     @Override
     protected void dessiner() {
-        EKOConsole.afficher(getX(), getY(), "F", EKOCouleur.ROUGE);
+        EKOConsole.afficher(getX(), getY(), "\uEEFE", EKOCouleur.BLANC);
     }
 }

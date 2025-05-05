@@ -1,5 +1,4 @@
-import eko.EKOConsole;
-import eko.EKOCouleur;
+import eko.*;
 
 public class Squelette extends ObjetJeu {
     public Squelette(int x, int y) {
@@ -8,28 +7,17 @@ public class Squelette extends ObjetJeu {
 
     @Override
     protected void mettreAJour(long deltaTemps) {
-        Personnage joueur = (Personnage) GestionnaireObjetsJeu.obtenir().trouverObjetJeu("Personnage");
-        if (joueur == null) return;
-
-        int dx = Integer.compare(joueur.getX(), getX());
-        int dy = Integer.compare(joueur.getY(), getY());
-
-        if (peutAller(getX() + dx, getY())) {
-            position.x += dx;
-        } else if (peutAller(getX(), getY() + dy)) {
-            position.y += dy;
+        ObjetJeu joueur = GestionnaireObjetsJeu.obtenir().trouverObjetJeu("Personnage");
+        if (joueur != null) {
+            if (joueur.getX() > getX()) position.x++;
+            else if (joueur.getX() < getX()) position.x--;
+            if (joueur.getY() > getY()) position.y++;
+            else if (joueur.getY() < getY()) position.y--;
         }
-    }
-
-    private boolean peutAller(int x, int y) {
-        for (ObjetJeu objet : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.MUR)) {
-            if (objet.getX() == x && objet.getY() == y) return false;
-        }
-        return true;
     }
 
     @Override
     protected void dessiner() {
-        EKOConsole.afficher(getX(), getY(), "S", EKOCouleur.BLANC);
+        EKOConsole.afficher(getX(), getY(), "\uEE15", EKOCouleur.BLANC);
     }
 }
