@@ -42,12 +42,14 @@ public class Personnage extends ObjetJeu implements Collisionnable {
         String SalleTxt = "Salle:" + numSalle ;
         int SalleX = EKOConsole.largeur() - (SalleTxt.length() + 2);
         EKOConsole.afficher(SalleX, 0, SalleTxt, EKOCouleur.JAUNE);
+
     }
 
     @Override
     public void gererCollisionAvec(ObjetJeu autre) {
         if (autre instanceof Clef) {
             aCle = true;
+
             for (ObjetJeu obj : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.SORTIE)) {
                 if (obj instanceof PorteVerrouillee) {
                     ((PorteVerrouillee) obj).deverrouiller();
@@ -63,20 +65,17 @@ public class Personnage extends ObjetJeu implements Collisionnable {
                     case 1:
                         numSalle++;
                         ChargeurSalle.chargerSalle("salle2.txt");
-                        Position entree2 = ChargeurSalle.trouverPorteEntree("salle2.txt");
-                        new Personnage(entree2.x, entree2.y);
+                        new Personnage(3, 5);
                         break;
                     case 2:
                         numSalle++;
                         ChargeurSalle.chargerSalle("salle3.txt");
-                        Position entree3 = ChargeurSalle.trouverPorteEntree("salle3.txt");
-                        new Personnage(entree3.x, entree3.y);
+                        new Personnage(3, 5);
                         break;
                     case 3:
                         numSalle++;
                         ChargeurSalle.chargerSalle("salle4.txt");
-                        Position entree4 = ChargeurSalle.trouverPorteEntree("salle4.txt");
-                        new Personnage(entree4.x, entree4.y);
+                        new Personnage(3, 5);
                         break;
                     case 4:
                     default:
@@ -88,18 +87,20 @@ public class Personnage extends ObjetJeu implements Collisionnable {
         }
 
         if (autre.etiquette == Etiquette.ENNEMI) {
-            perdreVie(20);
+            perdreVie(20); // chaque contact = 1 cœur perdu
+
+            // Revenir au point de départ
+            position.x = 3;
+            position.y = 5;
+
+            // Si la vie tombe à 0, écran de défaite
             if (vie <= 0) {
                 GestionnaireObjetsJeu.obtenir().viderSalle();
-                new EcranDefaite();
-            } else {
-                // Revenir devant la porte +
-                Position retour = ChargeurSalle.trouverPorteEntree("salle" + numSalle + ".txt");
-                position.x = retour.x;
-                position.y = retour.y;
+                new EcranDefaite(); // Tu dois avoir cette classe créée
             }
         }
     }
+
 
     private boolean peutAller(int x, int y) {
         for (ObjetJeu objet : GestionnaireObjetsJeu.obtenir().trouverObjetsJeu(Etiquette.MUR)) {

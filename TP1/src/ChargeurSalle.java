@@ -47,6 +47,9 @@ public class ChargeurSalle {
                         case 'L':
                             new Grenouille(x, y, false); // langue à gauche
                             break;
+                        case 'P':
+                            new Potion(x, y);
+                            break;
                         default:
                             // sol vide ou caractère ignoré
                             break;
