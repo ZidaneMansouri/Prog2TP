@@ -134,4 +134,7 @@ public class Personnage extends ObjetJeu implements Collisionnable {
             vie = 0;
         }
     }
+    public void RegenererVie() {
+        this.vie = vieMax;
+    }
 }
