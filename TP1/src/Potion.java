@@ -6,7 +6,10 @@ public class Potion extends ObjetJeu implements Collisionnable{
 
     @Override
     public void gererCollisionAvec(ObjetJeu autre) {
-
+    if(autre instanceof Personnage p) {
+        p.RegenererVie();
+        this.detruire();
+    }
     }
 
     @Override
@@ -16,6 +19,6 @@ public class Potion extends ObjetJeu implements Collisionnable{
 
     @Override
     protected void dessiner() {
-
+    EKOConsole.afficher(getX(), getY(), "\uF0C3", EKOCouleur.ROUGE);
     }
 }
