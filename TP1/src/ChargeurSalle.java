@@ -59,4 +59,22 @@ public class ChargeurSalle {
             e.printStackTrace();
         }
     }
+
+    public static Position trouverPorteEntree(String cheminFichier) {
+        try (BufferedReader lecteur = new BufferedReader(new FileReader(cheminFichier))) {
+            String ligne;
+            int y = 0;
+            while ((ligne = lecteur.readLine()) != null) {
+                for (int x = 0; x < ligne.length(); x++) {
+                    if (ligne.charAt(x) == '+') {
+                        return new Position(x, y + 1, 0); // le joueur apparaîtra juste devant
+                    }
+                }
+                y++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new Position(3, 5, 0); // position par défaut
+    }
 }
