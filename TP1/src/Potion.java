@@ -9,6 +9,9 @@ public class Potion extends ObjetJeu implements Collisionnable{
     if(autre instanceof Personnage p) {
         p.RegenererVie();
         this.detruire();
+
+        EKOSon PotionSon = EKOAudio.charger("audio/PotionSon.wav");
+        EKOAudio.jouer(PotionSon);
     }
     }
 
