@@ -8,7 +8,8 @@ public class GestionnaireObjetsJeu {
 
     private final ArrayList<ObjetJeu> objetsJeu = new ArrayList<>();
 
-    private GestionnaireObjetsJeu() {}
+    private GestionnaireObjetsJeu() {
+    }
 
     /**
      * Retourne l'instance unique (singleton) du gestionnaire des objets de jeu.
@@ -46,8 +47,7 @@ public class GestionnaireObjetsJeu {
         for (int i = objetsJeu.size() - 1; i >= 0; i--) {
             if (objetsJeu.get(i).doitEtreDetruit()) {
                 objetsJeu.remove(i);
-            }
-            else if (objetsJeu.get(i).estActif()) {
+            } else if (objetsJeu.get(i).estActif()) {
                 objetsJeu.get(i).mettreAJour(deltaTemps);
             }
         }
@@ -59,7 +59,7 @@ public class GestionnaireObjetsJeu {
                 for (int j = i + 1; j < objetsJeu.size(); j++) {
                     ObjetJeu deux = objetsJeu.get(j);
                     if (un.estActif() && deux.estActif() &&
-                        un.getX() == deux.getX() && un.getY() == deux.getY()) {
+                            un.getX() == deux.getX() && un.getY() == deux.getY()) {
                         if (un instanceof Collisionnable) {
                             ((Collisionnable) un).gererCollisionAvec(deux);
                         }
@@ -131,7 +131,8 @@ public class GestionnaireObjetsJeu {
 
         return null;
     }
-//Supprime tous les objets de la salle actuelle.
+
+    //Supprime tous les objets de la salle actuelle.
     public void viderSalle() {
         objetsJeu.clear();
     }

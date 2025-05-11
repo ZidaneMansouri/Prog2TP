@@ -5,6 +5,7 @@ public class EcranVictoire extends ObjetJeu {
     public EcranVictoire() {
         super("EcranVictoire", 0, 0, Etiquette.SOL);
     }
+
     // Cette méthode vérifie si le joueur appuie sur ESPACE ou ÉCHAPPE
     // Si oui, le jeu se ferme
     @Override
@@ -13,6 +14,7 @@ public class EcranVictoire extends ObjetJeu {
             System.exit(0); // Quitter le jeu
         }
     }
+
     // Cette méthode affiche les messages de victoire à l'écran
     @Override
     protected void dessiner() {

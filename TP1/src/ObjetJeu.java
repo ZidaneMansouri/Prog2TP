@@ -10,8 +10,8 @@ public abstract class ObjetJeu {
      * Construit et enregistre un objet de jeu.
      *
      * @param nom Nom donné à l'objet de jeu
-     * @param x La position x à l'écran (la colonne)
-     * @param y La position y à l'écran (la colonne)
+     * @param x   La position x à l'écran (la colonne)
+     * @param y   La position y à l'écran (la colonne)
      */
     protected ObjetJeu(String nom, int x, int y) {
         this(nom, x, y, null);
@@ -20,9 +20,9 @@ public abstract class ObjetJeu {
     /**
      * Construit et enregistre un objet de jeu.
      *
-     * @param nom Nom donné à l'objet de jeu
-     * @param x La position x à l'écran (la colonne)
-     * @param y La position y à l'écran (la colonne)
+     * @param nom       Nom donné à l'objet de jeu
+     * @param x         La position x à l'écran (la colonne)
+     * @param y         La position y à l'écran (la colonne)
      * @param etiquette etiquette
      */
     protected ObjetJeu(String nom, int x, int y, Etiquette etiquette) {
@@ -59,19 +59,36 @@ public abstract class ObjetJeu {
     /**
      * Active l'objet de jeu : il sera mis à jour et dessiné.
      */
-    public void activer() { this.actif = true; }
+    public void activer() {
+        this.actif = true;
+    }
 
     /**
      * Désactive l'objet de jeu : il ne sera plus mis à jour, ni dessiné.
      */
-    public void desactiver() { this.actif = false; }
+    public void desactiver() {
+        this.actif = false;
+    }
 
-    public boolean doitEtreDetruit() { return this.detruire; }
-    public boolean estActif() { return this.actif; }
+    public boolean doitEtreDetruit() {
+        return this.detruire;
+    }
 
-    public int getX() { return this.position.x; }
-    public int getY() { return this.position.y; }
-    public int getZ() { return this.position.z; }
+    public boolean estActif() {
+        return this.actif;
+    }
+
+    public int getX() {
+        return this.position.x;
+    }
+
+    public int getY() {
+        return this.position.y;
+    }
+
+    public int getZ() {
+        return this.position.z;
+    }
 
     public void setZ(int z) {
         this.position.z = z;

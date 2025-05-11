@@ -11,6 +11,7 @@ public class Grenouille extends ObjetJeu {
         super("Grenouille", x, y, Etiquette.ENNEMI);
         this.regardeDroite = regardeDroite;
     }
+
     // Mise à jour de la grenouille (appelée à chaque trame)
     @Override
     protected void mettreAJour(long deltaTemps) {
@@ -37,6 +38,7 @@ public class Grenouille extends ObjetJeu {
             langue = null;
         }
     }
+
     // Affichage de la grenouille
     @Override
     protected void dessiner() {
@@ -53,6 +55,7 @@ public class Grenouille extends ObjetJeu {
             super("Langue", x, y, Etiquette.ENNEMI);
             this.droite = droite;
         }
+
         // Met à jour la langue (appelée à chaque trame)
         @Override
         protected void mettreAJour(long deltaTemps) {
@@ -65,13 +68,15 @@ public class Grenouille extends ObjetJeu {
                 }
             }
         }
+
         // Affiche la langue rouge avec un symbole qui dépend de la direction
         @Override
         protected void dessiner() {
             String symbole = droite ? "\u257C" : "\u2500";
             EKOConsole.afficher(getX(), getY(), symbole, EKOCouleur.ROUGE);
         }
-       // Vérifie si la langue a fini son animation
+
+        // Vérifie si la langue a fini son animation
         public boolean estTerminee() {
             return tempsEcoule >= duree;
         }

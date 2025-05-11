@@ -15,6 +15,7 @@ public class EcranDeveloppeurs extends ObjetJeu {
             new EcranTitre();
         }
     }
+
     // Cette méthode affiche le texte de présentation à l'écran
     @Override
     protected void dessiner() {

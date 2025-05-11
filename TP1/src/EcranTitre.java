@@ -3,13 +3,15 @@ import eko.EKOConsole;
 import eko.EKOTouche;
 import eko.EKOCouleur;
 
-public class  EcranTitre extends ObjetJeu {
+public class EcranTitre extends ObjetJeu {
 
     private long tempsEcouleDepuisCreation = 0;
+
     // Constructeur : crée l’écran titre du jeu
     public EcranTitre() {
         super("EcranTitre", 0, 0, Etiquette.SOL);
     }
+
     // Met à jour l’écran à chaque trame
     @Override
     protected void mettreAJour(long deltaTemps) {
@@ -25,6 +27,7 @@ public class  EcranTitre extends ObjetJeu {
             }
         }
     }
+
     // Dessine l’écran avec une épée ASCII et le titre du jeu
     @Override
     protected void dessiner() {

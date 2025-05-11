@@ -7,6 +7,7 @@ public class EcranDefaite extends ObjetJeu {
     public EcranDefaite() {
         super("EcranDefaite", 0, 0, Etiquette.SOL);
     }
+
     // Cette méthode est appelée à chaque trame pour vérifier si une touche est appuyée
     @Override
     protected void mettreAJour(long deltaTemps) {
@@ -14,6 +15,7 @@ public class EcranDefaite extends ObjetJeu {
             System.exit(0); // Quitter le jeu
         }
     }
+
     // Cette méthode affiche le texte à l'écran
     @Override
     protected void dessiner() {
