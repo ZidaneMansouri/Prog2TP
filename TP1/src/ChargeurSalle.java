@@ -54,7 +54,6 @@ public class ChargeurSalle {
                             new Potion(x, y);
                             break;
                         default:
-                            // sol vide ou caractère ignoré
                             break;
                     }
                 }

@@ -7,15 +7,15 @@ public class EcranVictoire extends ObjetJeu {
 
     @Override
     protected void mettreAJour(long deltaTemps) {
-        if (EKOTouche.ECHAPPEMENT.estEnfoncee()) {
-            System.exit(0);
+        if (EKOTouche.ESPACE.estEnfoncee() || EKOTouche.ECHAPPEMENT.estEnfoncee()) {
+            System.exit(0); // Quitter le jeu
         }
     }
 
     @Override
     protected void dessiner() {
         String msg1 = " BRAVO ! Tu as terminé le jeu ! ";
-        String msg2 = "Appuie sur ÉCHAPPE pour quitter";
+        String msg2 = "Appuyez sur ESPACE ou ÉCHAPPE pour quitter.";
 
         int x1 = (EKOConsole.largeur() - msg1.length()) / 2;
         int x2 = (EKOConsole.largeur() - msg2.length()) / 2;
