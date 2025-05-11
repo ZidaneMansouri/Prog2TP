@@ -89,14 +89,16 @@ public class Personnage extends ObjetJeu implements Collisionnable {
         if (autre.etiquette == Etiquette.ENNEMI) {
             perdreVie(20); // chaque contact = 1 cœur perdu
 
-            // Revenir au point de départ
-            position.x = 3;
-            position.y = 5;
 
             // Si la vie tombe à 0, écran de défaite
             if (vie <= 0) {
                 GestionnaireObjetsJeu.obtenir().viderSalle();
                 new EcranDefaite(); // Tu dois avoir cette classe créée
+            } else {
+                String SalleTxt = "salle" + numSalle + ".txt" ;
+                Position spawn = ChargeurSalle.trouverSpawn(SalleTxt);
+                position.x = spawn.x;
+                position.y = spawn.y;
             }
         }
     }

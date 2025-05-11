@@ -20,7 +20,7 @@ public class  EcranTitre extends ObjetJeu {
                 this.detruire();
 
                 ChargeurSalle.chargerSalle("salle1.txt");
-                Position depart = ChargeurSalle.trouverPorteEntree("salle1.txt");
+                Position depart = ChargeurSalle.trouverSpawn("salle1.txt");
 
             }
         }

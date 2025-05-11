@@ -66,14 +66,14 @@ public class ChargeurSalle {
         }
     }
 
-    public static Position trouverPorteEntree(String cheminFichier) {
+    public static Position trouverSpawn(String cheminFichier) {
         try (BufferedReader lecteur = new BufferedReader(new FileReader(cheminFichier))) {
             String ligne;
             int y = 0;
             while ((ligne = lecteur.readLine()) != null) {
                 for (int x = 0; x < ligne.length(); x++) {
-                    if (ligne.charAt(x) == '+') {
-                        return new Position(x, y + 1, 0); // le joueur apparaîtra juste devant
+                    if (ligne.charAt(x) == 'A') {
+                        return new Position(x, y, 0);
                     }
                 }
                 y++;
