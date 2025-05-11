@@ -14,6 +14,9 @@ public class ChargeurSalle {
                     char symbole = ligne.charAt(x);
 
                     switch (symbole) {
+                        case 'A':
+                            new Personnage(x, y);
+                            break;
                         case '#':
                             new Mur(x, y);
                             break;

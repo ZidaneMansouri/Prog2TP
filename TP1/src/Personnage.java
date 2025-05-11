@@ -65,17 +65,17 @@ public class Personnage extends ObjetJeu implements Collisionnable {
                     case 1:
                         numSalle++;
                         ChargeurSalle.chargerSalle("salle2.txt");
-                        new Personnage(3, 5);
+
                         break;
                     case 2:
                         numSalle++;
                         ChargeurSalle.chargerSalle("salle3.txt");
-                        new Personnage(3, 5);
+
                         break;
                     case 3:
                         numSalle++;
                         ChargeurSalle.chargerSalle("salle4.txt");
-                        new Personnage(3, 5);
+
                         break;
                     case 4:
                     default:
