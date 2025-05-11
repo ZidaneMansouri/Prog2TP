@@ -6,11 +6,12 @@ public class Grenouille extends ObjetJeu {
     private final long delaiTir = 2000; // 2 secondes
     private Langue langue;
 
+    // Constructeur : crée une grenouille à une position donnée
     public Grenouille(int x, int y, boolean regardeDroite) {
         super("Grenouille", x, y, Etiquette.ENNEMI);
         this.regardeDroite = regardeDroite;
     }
-
+    // Mise à jour de la grenouille (appelée à chaque trame)
     @Override
     protected void mettreAJour(long deltaTemps) {
         tempsDepuisDernierTir += deltaTemps;
@@ -36,7 +37,7 @@ public class Grenouille extends ObjetJeu {
             langue = null;
         }
     }
-
+    // Affichage de la grenouille
     @Override
     protected void dessiner() {
         EKOConsole.afficher(getX(), getY(), "\uEDF8", EKOCouleur.VERT);
@@ -52,11 +53,11 @@ public class Grenouille extends ObjetJeu {
             super("Langue", x, y, Etiquette.ENNEMI);
             this.droite = droite;
         }
-
+        // Met à jour la langue (appelée à chaque trame)
         @Override
         protected void mettreAJour(long deltaTemps) {
             tempsEcoule += deltaTemps;
-
+            // Si le joueur est sur la même case que la langue, il perd de la vie
             ObjetJeu joueur = GestionnaireObjetsJeu.obtenir().trouverObjetJeu("Personnage");
             if (joueur != null && joueur.getX() == getX() && joueur.getY() == getY()) {
                 if (joueur instanceof Personnage p) {
@@ -64,13 +65,13 @@ public class Grenouille extends ObjetJeu {
                 }
             }
         }
-
+        // Affiche la langue rouge avec un symbole qui dépend de la direction
         @Override
         protected void dessiner() {
             String symbole = droite ? "\u257C" : "\u2500";
             EKOConsole.afficher(getX(), getY(), symbole, EKOCouleur.ROUGE);
         }
-
+       // Vérifie si la langue a fini son animation
         public boolean estTerminee() {
             return tempsEcoule >= duree;
         }

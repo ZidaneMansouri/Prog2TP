@@ -3,12 +3,12 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ChargeurSalle {
-
+    // Cette méthode lit un fichier texte et crée tous les objets de la salle (murs, ennemis, etc.)
     public static void chargerSalle(String cheminFichier) {
         try (BufferedReader lecteur = new BufferedReader(new FileReader(cheminFichier))) {
             String ligne;
             int y = 0;
-
+            // Lire chaque ligne du fichier
             while ((ligne = lecteur.readLine()) != null) {
                 for (int x = 0; x < ligne.length(); x++) {
                     char symbole = ligne.charAt(x);
@@ -57,7 +57,7 @@ public class ChargeurSalle {
                             break;
                     }
                 }
-                y++;
+                y++; // passer à la ligne suivante
             }
         } catch (IOException e) {
             System.err.println("Erreur de lecture du fichier : " + cheminFichier);
@@ -65,6 +65,7 @@ public class ChargeurSalle {
         }
     }
 
+    // Cette méthode trouve la position où doit apparaître le joueur (symbole 'A')
     public static Position trouverSpawn(String cheminFichier) {
         try (BufferedReader lecteur = new BufferedReader(new FileReader(cheminFichier))) {
             String ligne;
@@ -80,6 +81,7 @@ public class ChargeurSalle {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // Si on ne trouve pas le symbole 'A', on retourne une position par défaut
         return new Position(3, 5, 0); // position par défaut
     }
 }
