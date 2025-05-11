@@ -22,6 +22,6 @@ public class Feu extends ObjetJeu {
     @Override
     protected void dessiner() {
         String symbole = versDroite ? "\uE3BF" : "\uE3BF";
-        EKOConsole.afficher(getX(), getY(), symbole, EKOCouleur.ROUGE);
+        EKOConsole.afficher(getX(), getY(), symbole, EKOCouleur.RVB(204, 102, 0));
     }
 }

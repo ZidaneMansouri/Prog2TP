@@ -16,6 +16,6 @@ public class Mur extends ObjetJeu {
     //Affiche le mur ou la porte condamnée (grise ou rouge).
     @Override
     protected void dessiner() {
-        EKOConsole.afficher(getX(), getY(), "\u2588", EKOCouleur.GRIS_PALE);
+        EKOConsole.afficher(getX(), getY(), "\u2588", EKOCouleur.RVB(107, 107, 108));
     }
 }
