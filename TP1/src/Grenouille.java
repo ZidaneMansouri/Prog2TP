@@ -1,4 +1,9 @@
 import eko.*;
+// Nous avons réussi à afficher la grenouille qui regarde vers la gauche, avec sa
+// langue qui sort aussi vers la gauche, comme demandé. Pour la grenouille qui regarde vers la droite,
+// nous avons seulement pu faire sortir la langue vers la droite, car il n’y avait pas de caractère Unicode
+// spécifique pour afficher le corps de la grenouille tournée vers la droite (nous n’avions que le symbole \uEDF8
+// pour la version gauche).
 
 public class Grenouille extends ObjetJeu {
     private boolean regardeDroite; // true = droite, false = gauche
