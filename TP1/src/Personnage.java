@@ -1,7 +1,4 @@
-import eko.EKOConsole;
-import eko.EKOCouleur;
-import eko.EKOTouche;
-import eko.EKOChaine;
+import eko.*;
 
 public class Personnage extends ObjetJeu implements Collisionnable {
 
@@ -92,7 +89,8 @@ public class Personnage extends ObjetJeu implements Collisionnable {
         // Si le joueur touche un ennemi
         if (autre.etiquette == Etiquette.ENNEMI) {
             perdreVie(20); // chaque contact = 1 cœur perdu
-
+            EKOSon Ouch = EKOAudio.charger("audio/Ouch_Bobo.wav");
+            EKOAudio.jouer(Ouch, false);
 
             // Si la vie tombe à 0, écran de défaite
             if (vie <= 0) {
